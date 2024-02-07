@@ -62,6 +62,8 @@ export const javascript_visitors_runes = {
 		// each `foo = $state()` needs a backing `#foo` field
 		for (const [name, field] of public_state) {
 			let deconflicted = name;
+
+			//unexpected use of while 
 			while (private_ids.includes(deconflicted)) {
 				deconflicted = '_' + deconflicted;
 			}
@@ -84,6 +86,8 @@ export const javascript_visitors_runes = {
 				const name = definition.key.name;
 
 				const is_private = definition.key.type === 'PrivateIdentifier';
+
+				//this is possible ?!
 				const field = (is_private ? private_state : public_state).get(name);
 
 				if (definition.value?.type === 'CallExpression' && field !== undefined) {
